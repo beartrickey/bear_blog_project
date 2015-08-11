@@ -8,7 +8,9 @@
 	<br><br>
 	tags:
 	{% for blog_post_tag in blog_post.blog_post_tags.all %}
-		<a href="">{{ blog_post_tag.tag.name }}</a>
+		<div class="label label-blog">
+			<a href="">{{ blog_post_tag.tag.name }}</a>
+		</div>
 	{% endfor %}
 {% endblock %}
 
