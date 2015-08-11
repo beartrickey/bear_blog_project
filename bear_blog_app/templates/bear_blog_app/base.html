@@ -1,0 +1,129 @@
+{% load static %}
+<html>
+
+<head>
+
+	<title>Bear Blog</title>
+
+	<!-- fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+	<!-- jquery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!-- Fav icons -->
+	<link rel="icon" type="image/png" href="{% static "bear_blog_app/fav_32x32.png" %}" sizes="32x32">
+
+
+	<style>
+
+		body {
+			margin-top: 0px;
+			margin-bottom: 0px;
+			height: 100%;
+			background-color: #252b31;
+		}
+
+		a {
+			color: #252b31;
+		}
+
+		#content {
+			background-color: #e4e4e4;
+			padding: 10px;
+		}
+
+		#site-container {
+			position: relative;
+			width: 800px;
+			padding: 10px;
+			margin-top: 0px;
+			margin-left: auto;
+			margin-right: auto;
+			margin-bottom: 0px;
+			background-color: #c6c6c6;
+			height: 100%;
+			color: #252b31;
+		}
+
+		.nav-link {
+			display: inline;
+			margin: 10px;
+		}
+
+		#blog-subtitle {
+			font-size: 10pt;
+			color: #666;
+		}
+
+		pre {
+			background-color: #aaa;
+			border-width: 0px;
+		}
+		
+		#footer {
+			position: absolute;
+			width: 100%;
+			bottom: 0px;
+			color: #666;
+			font-size: 10pt;
+			text-align: center;
+		}
+
+		#footer a {
+			color: #666;
+		}
+
+	</style>
+
+</head>
+
+
+<body>
+
+	<div id="site-container">
+
+		<div id="site-head" style="text-align:center">
+
+			<div id="site-title">
+				<img src="{% static "bear_blog_app/bear.png" %}">
+				<h1>bear trickey blog</h1>
+			</div>
+			
+			<div id="site-nav-links">
+				<div class="nav-link">
+					<a href="">latest</a>
+				</div>
+				<div class="nav-link">
+					<a href="">archives</a>
+				</div>
+			</div>
+
+		</div>
+
+		<br>
+
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+
+		<div id="footer">
+			&copy; Bear Trickey. Powered by <a href="https://www.djangoproject.com/">Django</a>.
+		</div>
+
+	</div>
+
+</body>
+
+
+</html>

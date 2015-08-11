@@ -1,0 +1,14 @@
+{% extends "bear_blog_app/base.html" %}
+
+{% block content %}
+	<h2>{{ blog_post.title }}</h2>
+	<p id="blog-subtitle">by {{ blog_post.user }} on  {{ blog_post.created|date:"SHORT_DATE_FORMAT" }}</p>
+	<br>
+	{{ blog_post.content|safe }}
+	<br><br>
+	tags:
+	{% for blog_post_tag in blog_post.blog_post_tags.all %}
+		<a href="">{{ blog_post_tag.tag.name }}</a>
+	{% endfor %}
+{% endblock %}
+
