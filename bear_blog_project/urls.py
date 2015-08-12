@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 from bear_blog_app.views import (
-	ArchiveListView,
+	BlogPostListView,
 	BlogPostView,
 )
 
@@ -27,9 +27,9 @@ urlpatterns = [
 		 include(admin.site.urls)
 	),
 	url(
-		r'^archive/',
-		view=ArchiveListView.as_view(),
-		name='archive_list_view',
+		r'^posts/',
+		view=BlogPostListView.as_view(),
+		name='blog_post_list_view',
 	),
 	url(
 		r'^post/(?P<blog_post_slug>[-\S]+)$',

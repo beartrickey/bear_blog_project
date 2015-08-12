@@ -47,7 +47,7 @@
 			color: #252b31;
 		}
 
-		#content {
+		.blog-post {
 			width: 100%;
 			background-color: #e4e4e4;
 			padding: 1em;
@@ -135,10 +135,10 @@
 			
 			<div id="site-nav-links">
 				<div class="nav-link">
-					<a href="">latest</a>
+					<a href="{% url "blog_post_list_view" %}?latest=True">latest</a>
 				</div>
 				<div class="nav-link">
-					<a href="">archives</a>
+					<a href="{% url "blog_post_list_view" %}">stream</a>
 				</div>
 			</div>
 
@@ -146,10 +146,8 @@
 
 		<br>
 
-		<div id="content">
-			{% block content %}
-			{% endblock %}
-		</div>
+		{% block content %}
+		{% endblock %}
 
 		<div id="footer">
 			&copy; Bear Trickey. Powered by <a href="https://www.djangoproject.com/">Django</a>.

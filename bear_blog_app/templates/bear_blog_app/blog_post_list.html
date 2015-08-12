@@ -1,0 +1,31 @@
+{% extends "bear_blog_app/base.html" %}
+
+{% block content %}
+
+	{% for object in object_list %}
+
+		<div class="blog-post">
+			<a href="{% url "blog_post_view" object.slug %}">
+				<h2>{{ object.title }}</h2>
+			</a>
+
+			<p id="blog-subtitle">by {{ object.user }} on  {{ object.created|date:"SHORT_DATE_FORMAT" }}</p>
+
+			<br>
+			{{ object.content|safe }}
+			<br><br>
+			tags:
+			{% for blog_post_tag in object.blog_post_tags.all %}
+				<div class="label label-blog">
+					<a href="{% url "blog_post_list_view" %}?tag={{ blog_post_tag.tag.name }} ">{{ blog_post_tag.tag.name }}</a>
+				</div>
+				&nbsp
+			{% endfor %}
+		</div>
+
+		<br>
+
+	{% endfor %}
+
+{% endblock %}
+
