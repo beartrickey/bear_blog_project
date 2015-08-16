@@ -4,7 +4,7 @@
 
 <head>
 
-	<title>bear trickey blog</title>
+	<title>Bear Trickey Blog</title>
 
 	<meta charset="utf-8">
 
@@ -135,15 +135,18 @@
 
 			<div id="site-title">
 				<img src="{% static "bear_blog_app/bear.png" %}">
-				<h1>bear trickey blog</h1>
+				<h1>Bear Trickey Blog</h1>
 			</div>
 			
 			<div id="site-nav-links">
 				<div class="nav-link">
-					<a href="{% url "blog_post_list_view" %}?latest=True">latest</a>
+					<a href="{% url "blog_post_list_view" %}?latest=True">Latest</a>
 				</div>
 				<div class="nav-link">
-					<a href="{% url "blog_post_list_view" %}">stream</a>
+					<a href="{% url "blog_post_list_view" %}">Stream</a>
+				</div>
+				<div class="nav-link">
+					<a href="{% url "blog_post_list_view" %}">About</a>
 				</div>
 			</div>
 
