@@ -27,7 +27,7 @@ urlpatterns = [
 		 include(admin.site.urls)
 	),
 	url(
-		r'^',
+		r'^$',
 		view=BlogPostListView.as_view(),
 		name='blog_post_list_view',
 	),
