@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 *.swo
+*.log
 
 */local_env
 
