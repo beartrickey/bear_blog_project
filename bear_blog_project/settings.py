@@ -88,6 +88,38 @@ DATABASES = {
 }
 
 
+# Logging
+LOGGING = {
+	'version': 1,
+	'disable_existing_loggers': False,
+	'formatters': {
+		'simple': {
+			'format': '%(asctime)s %(levelname)s %(message)s'
+		},
+	},
+	'handlers': {
+		'file': {
+			'level': 'DEBUG',
+			'class': 'logging.FileHandler',
+			'filename': BASE_DIR + '/log/debug.log',
+			'formatter': 'simple',
+		},
+	},
+	'loggers': {
+		'django': {
+			'handlers': ['file'],
+			'level': 'INFO',
+			'propagate': True,
+		},
+		'info_logger': {
+			'handlers': ['file'],
+			'level': 'DEBUG',
+			'propagate': True,
+		},
+	},
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 

@@ -1,7 +1,19 @@
+# Python
+
+# Django
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView
 
+# Third Party
+
+# App
 from .models import BlogPost
+
+
+# Logging
+import logging
+logger = logging.getLogger('info_logger')
+
 
 # Create your views here.
 class BlogPostListView(ListView):
@@ -36,6 +48,9 @@ class BlogPostListView(ListView):
 		if self.request.GET.get("latest") == "True":
 			qs = [qs.latest("created")]
 
+		if self.request.GET:
+			logger.info("Someone used GET parameters: {0}".format(self.request.GET))
+
 		return qs
 
 class BlogPostView(TemplateView):
@@ -53,3 +68,4 @@ class BlogPostView(TemplateView):
 		data.update({"blog_post": blog_post})
 
 		return data
+
