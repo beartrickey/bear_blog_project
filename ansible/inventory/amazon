@@ -1,0 +1,11 @@
+[amazon-web]
+amazon-web-1    ansible_ssh_host=52.26.114.110    ansible_ssh_port=22     ansible_ssh_user=ubuntu    ansible_ssh_private_key_file=~/.keys/amazonPrivateKey.pem
+
+[amazon-db]
+amazon-db-1     ansible_ssh_host=52.11.150.132    ansible_ssh_port=22     ansible_ssh_user=ubuntu    ansible_ssh_private_key_file=~/.keys/amazonPrivateKey.pem
+
+[web:children]
+amazon-web
+
+[db:children]
+amazon-db

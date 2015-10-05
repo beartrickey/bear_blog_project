@@ -1,0 +1,48 @@
+---
+- name: Install necessary apps to amazon web server
+  hosts: web
+  sudo: True
+  remote_user: ubuntu
+  vars_files:
+    - ursa_blogger_prod_vars.yml
+#  environment: env
+  tasks:
+    - name: install apps
+      apt: name={{ item }} state=present update_cache=yes
+      with_items:
+        - libapache2-mod-wsgi
+        - apache2
+        - python-dev
+        - python-setuptools
+        - libpq-dev
+        - python-pip
+        - git
+
+    - name: write apache virtual host config
+      copy: src=files/000-default.conf dest=/etc/apache2/sites-available/000-default.conf
+
+    - name: install virtualenv
+      pip: name=virtualenv
+
+    - name: copy private key
+      copy: src=~/.keys/amazonPrivateKey.pem dest=/root/.ssh/amazonPrivateKey.pem mode=0600 owner=ubuntu group=ubuntu
+
+    - name: create app directory
+      file: path=/var/www/bear_blog_env/bear_blog_project/ state=directory
+
+    - name: copy github key
+      copy: src=~/.keys/grousePrivateKey.pem dest=/root/.ssh/grousePrivateKey.pem mode=0600
+
+#    - name: clone bear_blog_project git repository
+#      git:
+#        repo=git@github.com:beartrickey/bear_blog_project.git
+#        dest=/var/www/bear_blog_env/
+#        accept_hostkey=yes
+#        key_file=/root/.ssh/grousePrivateKey.pem
+
+    - name: pip install requirements
+      pip: requirements=/var/www/bear_blog_env/bear_blog_project/requirements.txt virtualenv=/var/www/bear_blog_env/
+
+    - name: restart apache
+      command: "/usr/sbin/apache2ctl restart"
+      environment: env
