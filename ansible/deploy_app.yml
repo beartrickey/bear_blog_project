@@ -4,8 +4,8 @@
   sudo: True
   remote_user: ubuntu
   vars_files:
-    - ursa_blogger_prod_vars.yml
-#  environment: env
+    - ursa_blogger_prod_vars.vars
+  environment: env
   tasks:
     - name: install apps
       apt: name={{ item }} state=present update_cache=yes
@@ -27,22 +27,24 @@
     - name: copy private key
       copy: src=~/.keys/amazonPrivateKey.pem dest=/root/.ssh/amazonPrivateKey.pem mode=0600 owner=ubuntu group=ubuntu
 
+    - name: copy github private key
+      copy: src=~/.ssh/id_rsa dest=/root/.ssh/id_rsa mode=0600 owner=ubuntu group=ubuntu
+
     - name: create app directory
       file: path=/var/www/bear_blog_env/bear_blog_project/ state=directory
 
-    - name: copy github key
-      copy: src=~/.keys/grousePrivateKey.pem dest=/root/.ssh/grousePrivateKey.pem mode=0600
-
-#    - name: clone bear_blog_project git repository
-#      git:
-#        repo=git@github.com:beartrickey/bear_blog_project.git
-#        dest=/var/www/bear_blog_env/
-#        accept_hostkey=yes
-#        key_file=/root/.ssh/grousePrivateKey.pem
+    - name: clone bear_blog_project git repository
+      git:
+        repo=git@github.com:beartrickey/bear_blog_project.git
+        dest=/var/www/bear_blog_env/bear_blog_project
+        force=yes
+        accept_hostkey=yes
+        key_file=/root/.ssh/id_rsa
+        version=master
 
     - name: pip install requirements
       pip: requirements=/var/www/bear_blog_env/bear_blog_project/requirements.txt virtualenv=/var/www/bear_blog_env/
 
-    - name: restart apache
-      command: "/usr/sbin/apache2ctl restart"
-      environment: env
+    - name: stop apache
+      shell: "/usr/sbin/apache2ctl restart"
+

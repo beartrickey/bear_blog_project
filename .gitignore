@@ -3,5 +3,5 @@
 *.swo
 *.log
 
-*/local_env
+*.vars
 
