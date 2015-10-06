@@ -45,6 +45,6 @@
     - name: pip install requirements
       pip: requirements=/var/www/bear_blog_env/bear_blog_project/requirements.txt virtualenv=/var/www/bear_blog_env/
 
-    - name: stop apache
+    - name: restart apache
       shell: "/usr/sbin/apache2ctl restart"
 
