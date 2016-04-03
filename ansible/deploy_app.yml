@@ -46,5 +46,6 @@
       pip: requirements=/var/www/bear_blog_env/bear_blog_project/requirements.txt virtualenv=/var/www/bear_blog_env/
 
     - name: restart apache
+      environment: env
       shell: "/usr/sbin/apache2ctl restart"
 

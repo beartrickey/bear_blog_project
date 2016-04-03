@@ -1,0 +1,15 @@
+
+database image (postgres)
+data volume lives on host machine
+lives on separate host from web app
+
+web app image (django)
+lives on separate host from db
+
+nginx image
+lives on web app host
+
+ansible installs docker on hosts
+ansible pulls, runs docker containers
+
+
